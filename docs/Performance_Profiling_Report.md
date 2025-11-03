@@ -41,6 +41,24 @@ This report presents the performance analysis of the parallel Depth-First Search
 
 **Serial Time (T_S)**: 0.000571 seconds (0.571 milliseconds)
 
+### Visualizations
+
+The performance data is visualized in the following graphs:
+
+1. **Execution Time Comparison**: Shows serial vs parallel execution times, demonstrating that parallel versions take significantly longer
+2. **Speedup Analysis**: Compares measured speedup against ideal linear speedup, showing negative speedup (S < 1.0)
+3. **Efficiency Analysis**: Shows efficiency degradation as thread count increases
+4. **Performance Degradation Factor**: Illustrates how many times slower the parallel version is compared to serial
+5. **Combined Comparison**: Side-by-side comparison of speedup and efficiency metrics
+
+**Interactive Graphs**: Open `performance_graphs.html` in a web browser to view interactive visualizations of all performance metrics.
+
+**Note**: If you have Python installed, you can also generate static PNG graphs by running:
+```bash
+python src/generate_graphs.py
+```
+This will generate high-resolution PNG images saved to the `docs/` directory.
+
 ---
 
 ## Analysis Using Amdahl's Law
