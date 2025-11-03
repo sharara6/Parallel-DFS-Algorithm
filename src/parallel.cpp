@@ -28,7 +28,8 @@ void dfsRec(vector<vector<int>> &adj, vector<bool> &visited, int s, vector<int> 
             needsVisit = !visited[i];
         }
 
-        if (needsVisit) {
+        if (needsVisit)
+        {
             #pragma omp task shared(adj, visited, res)
             {
                 dfsRec(adj, visited, i, res);
@@ -49,11 +50,17 @@ vector<int> dfs(vector<vector<int>> &adj)
         {
             for (int i = 0; i < adj.size(); i++)
             {
-                if (visited[i] == false)
+                bool needsVisit = false;
+                #pragma omp critical
+                {
+                    needsVisit = !visited[i];
+                }
+
+                if (needsVisit)
                 {
                     dfsRec(adj, visited, i, res);
                 }
-                }
+            }
         }
     }
     return res;
@@ -98,8 +105,8 @@ int main()
     {
         cout << result[i] << " ";
     }
-    
-    cout << "..." << endl << "Execution time: " << time_ms << " milliseconds (ms)" << endl;  
+
+    cout << "..." << endl << "Execution time: " << time_ms << " milliseconds (ms)" << endl;
     cout << "Number of threads used: " << omp_get_max_threads() << endl;
 
     return 0;
